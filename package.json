@@ -1,0 +1,30 @@
+{
+  "name": "projeto13-batepapo-uol-api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon rum index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicoladla/BatePapoUol-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicoladla/BatePapoUol-API/issues"
+  },
+  "homepage": "https://github.com/Nicoladla/BatePapoUol-API#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.11.0"
+  }
+}
