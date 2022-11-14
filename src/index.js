@@ -151,7 +151,7 @@ app.get("/messages", async (req, res) => {
   try {
     const messages = await db
       .collection("messages")
-      .find({ $or: [{ from: user }, { to: user }, { to: "Todos" }] })
+      .find({ $or: [{ from: user }, { to: user }, { to: "Todos" }, {type:"message"}] })
       .toArray();
 
     res.send(messages.slice(-limit));
