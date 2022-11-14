@@ -31,7 +31,40 @@ const inputMessage = {
   type: "status",
   time: undefined,
 };
-//const exitMessage = ;
+const exitMessage = {
+  from: undefined,
+  to: "Todos",
+  text: "sai da sala...",
+  type: "status",
+  time: undefined,
+};
+
+async function DeleteInactiveUsers() {
+  const hours = dayjs().hour();
+  const minutes = dayjs().minute();
+  const seconds = dayjs().second();
+
+  try {
+    const usersExist = await db.collection("users").find().toArray();
+    if (usersExist.length === 0) return;
+
+    usersExist.forEach(async (user) => {
+      const idleTime = Date.now() - user.lastStatus;
+      if (idleTime < 10000) return;
+
+      await db.collection("users").deleteOne({ name: user.name });
+
+      await db.collection("messages").insertOne({
+        ...exitMessage,
+        from: user.name,
+        time: `${hours}:${minutes}:${seconds}`,
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+setInterval(DeleteInactiveUsers, 5000);
 
 app.post("/participants", async (req, res) => {
   const user = req.body;
