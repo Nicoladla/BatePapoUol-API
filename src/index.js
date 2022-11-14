@@ -128,6 +128,27 @@ app.get("/messages", async (req, res) => {
   }
 });
 
+app.post("/status", async (req, res) => {
+  const user = req.headers.user;
+
+  try {
+    const userExist = await db.collection("users").findOne({ name: user });
+    if (!userExist) {
+      return res.sendStatus(404);
+    }
+
+    const lastStatus = Date.now();
+    await db
+      .collection("users")
+      .updateOne({ name: user }, { $set: { lastStatus } });
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 app.listen(process.env.PORT_EXPRESS, () =>
   console.log(`App running on port ${process.env.PORT_EXPRESS}`)
 );
