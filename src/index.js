@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import joi from "joi";
 
+import dayjs from "dayjs";
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -17,12 +19,19 @@ const userSchema = joi.object({
   name: joi.string().required().min(3),
 });
 const messageSchema = joi.object({
-  from: joi.string().required(),
-  to: joi.string().required(),
+  to: joi.string().required().min(3),
   text: joi.string().required(),
-  type: joi.string().required(),
-  time: joi.string().required(),
+  type: joi.string().required().min(7).max(15),
 });
+
+const inputMessage = {
+  from: undefined,
+  to: "Todos",
+  text: "entra na sala...",
+  type: "status",
+  time: undefined,
+};
+//const exitMessage = ;
 
 app.post("/participants", async (req, res) => {
   const user = req.body;
@@ -43,12 +52,79 @@ app.post("/participants", async (req, res) => {
     await db
       .collection("users")
       .insertOne({ name: user.name, lastStatus: Date.now() });
-  
-      //Ainda falta enviar a msg de status, instalar a biblioteca dayjs.
+
+    const hours = dayjs().hour();
+    const minutes = dayjs().minute();
+    const seconds = dayjs().second();
+
+    await db.collection("messages").insertOne({
+      ...inputMessage,
+      from: user.name,
+      time: `${hours}:${minutes}:${seconds}`,
+    });
+
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
+  }
+});
+
+app.get("/participants", async (req, res) => {
+  const users = await db.collection("users").find().toArray();
+  res.send(users);
+});
+
+app.post("/messages", async (req, res) => {
+  const message = req.body;
+  const name = req.headers.user;
+
+  try {
+    const userExist = await db.collection("users").findOne({ name });
+    if (!userExist) {
+      return res.status(422).send("User not found");
+    }
+
+    const { error } = messageSchema.validate(message, { abortEarly: false });
+    if (error) {
+      const errors = error.details.map((detail) => detail.message);
+      return res.status(422).send(errors);
+    }
+    if (message.type !== "message" && message.type !== "private_message") {
+      return res.sendStatus(422);
+    }
+
+    const hours = dayjs().hour();
+    const minutes = dayjs().minute();
+    const seconds = dayjs().second();
+
+    await db.collection("messages").insertOne({
+      ...message,
+      from: name,
+      time: `${hours}:${minutes}:${seconds}`,
+    });
+
+    res.sendStatus(201);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
+app.get("/messages", async (req, res) => {
+  const user = req.headers.user;
+  const limit = Number(req.query.limit);
+
+  try {
+    const messages = await db
+      .collection("messages")
+      .find({ $or: [{ from: user }, { to: user }, { to: "Todos" }] })
+      .toArray();
+
+    res.send(messages.slice(-limit));
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
   }
 });
 
