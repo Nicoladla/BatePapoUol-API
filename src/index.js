@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import cors from "cors";
 import dotenv from "dotenv";
 import joi from "joi";
@@ -12,7 +12,11 @@ app.use(cors());
 dotenv.config();
 
 const mongoClient = new MongoClient(process.env.MONGO_URL);
-await mongoClient.connect();
+try {
+  await mongoClient.connect();
+} catch (error) {
+  console.log(error);
+}
 const db = mongoClient.db("batepapo-uol");
 
 const userSchema = joi.object({
@@ -151,13 +155,45 @@ app.get("/messages", async (req, res) => {
   try {
     const messages = await db
       .collection("messages")
-      .find({ $or: [{ from: user }, { to: user }, { to: "Todos" }, {type:"message"}] })
+      .find({
+        $or: [
+          { from: user },
+          { to: user },
+          { to: "Todos" },
+          { type: "message" },
+        ],
+      })
       .toArray();
 
     res.send(messages.slice(-limit));
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);
+  }
+});
+
+app.delete("/messages/:ID_DA_MENSAGEM", async (req, res) => {
+  const id = req.params.ID_DA_MENSAGEM;
+  const user = req.headers.user;
+
+  try {
+    const messageExist = await db
+      .collection("messages")
+      .findOne({ _id: ObjectId(id) });
+
+    if (!messageExist) {
+      return res.sendStatus(404);
+    }
+
+    if (messageExist.from !== user) {
+      return res.sendStatus(401);
+    }
+
+    await db.collection("messages").deleteOne({ _id: ObjectId(id) });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
   }
 });
 
