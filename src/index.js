@@ -197,6 +197,46 @@ app.delete("/messages/:ID_DA_MENSAGEM", async (req, res) => {
   }
 });
 
+app.put("/messages/:ID_DA_MENSAGEM", async (req, res) => {
+  const message = req.body;
+  const id = req.params.ID_DA_MENSAGEM;
+  const user = req.headers.user;
+
+  try {
+    const userExist = await db.collection("users").findOne({ name: user });
+    if (!userExist) return res.sendStatus(422);
+
+    const { error } = messageSchema.validate(message, { abortEarly: false });
+    if (error) {
+      const errors = error.details.map((detail) => detail.message);
+      return res.status(422).send(errors);
+    }
+    if (message.type !== "message" && message.type !== "private_message") {
+      return res.sendStatus(422);
+    }
+
+    const messageExist = await db
+      .collection("messages")
+      .findOne({ _id: ObjectId(id) });
+
+    if (!messageExist) {
+      return res.sendStatus(404);
+    }
+    if (messageExist.from !== user) {
+      return res.sendStatus(401);
+    }
+
+    await db
+      .collection("messages")
+      .updateOne({ _id: ObjectId(id) }, { $set: message });
+
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 app.post("/status", async (req, res) => {
   const user = req.headers.user;
 
