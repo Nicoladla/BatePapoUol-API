@@ -4,7 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon rum index.js"
+    "dev": "nodemon rum src/index.js",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
