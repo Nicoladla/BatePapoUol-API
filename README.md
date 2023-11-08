@@ -15,3 +15,31 @@ Com essa API é possível:
 Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/BatePapo-UOL](https://github.com/Nicoladla/BatePapo-UOL).
 
 **OBS**: A API usada nesse frontend não é a mesma deste repositório. Sendo assim, existem algumas divergências nas funcionalidades.
+
+---
+
+## Confira como usar os recursos da API:
+
+**1- Cadastrar um usuário:**
+
+- Método: **`POST`**;
+- Rota: **`/participants`**;
+
+* Você deverá enviar pelo **body** da requisição um `name`, que deverá ser uma string, ter no mínimo 3 letras e não deve ser vazio:
+
+  ```
+  {
+    name: "Fulano"
+  }
+  ```
+
+- O usuário será salvo no banco de dados com o seguinte formato:
+
+  ```
+  {
+    {name: 'Fulano', lastStatus: 12313123}
+  }
+  ```
+
+  - **OBS**: o uso do `lastStatus` será explicado mais a frente.
+  - **OBS**: O usuário cadastrado só existirá enquanto ele permanecer conectado ao servidor.
