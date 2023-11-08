@@ -43,3 +43,19 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
   - **OBS**: o uso do `lastStatus` será explicado mais a frente.
   - **OBS**: O usuário cadastrado só existirá enquanto ele permanecer conectado ao servidor.
+  
+- Sempre que um novo usuário for cadastrado, será salvo automaticamente uma mensagem de status:
+
+  ```
+    {
+      from: 'xxx', to: 'Todos', text: 'entra na sala...', type: 'status', time: 'HH:MM:SS'
+    }
+  ```
+
+- Assim como, usuários que forem desconectados do servidor. Também será salvo uma mensagem automaticamente:
+
+  ```
+    {
+      from: 'xxx', to: 'Todos', text: 'sai da sala...', type: 'status', time: 'HH:MM:SS'
+    }
+  ```
