@@ -27,7 +27,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
 * Você deverá enviar pelo **body** da requisição um `name`, que deverá ser uma string, ter no mínimo 3 letras e não deve ser vazio:
 
-  ```
+  ```javascript
   {
     name: "Fulano"
   }
@@ -35,7 +35,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
 - O usuário será salvo no banco de dados com o seguinte formato:
 
-  ```
+  ```javascript
   {
     {name: 'Fulano', lastStatus: 12313123}
   }
@@ -46,7 +46,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   
 - Sempre que um novo usuário for cadastrado, será salvo automaticamente uma mensagem de status:
 
-  ```
+  ```javascript
     {
       from: 'xxx', to: 'Todos', text: 'entra na sala...', type: 'status', time: 'HH:MM:SS'
     }
@@ -54,7 +54,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
 - Assim como, usuários que forem desconectados do servidor. Também será salvo uma mensagem automaticamente:
 
-  ```
+  ```javascript
     {
       from: 'xxx', to: 'Todos', text: 'sai da sala...', type: 'status', time: 'HH:MM:SS'
     }
