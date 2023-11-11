@@ -59,3 +59,31 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
       from: 'xxx', to: 'Todos', text: 'sai da sala...', type: 'status', time: 'HH:MM:SS'
     }
   ```
+  
+- Status Code:
+
+  - Ocorre quando tudo dá certo:
+
+    ```
+    status: 201
+    ```
+
+  - Ocorre quando o `name` é inválido:
+
+    ```
+    status: 422
+    ```
+
+  - Ocorre quando o usuário a ser cadastrado já existe:
+
+    ```
+    status: 409
+    ```
+
+  - Ocorre quando acontece algum erro no servidor:
+
+    ```
+    status: 500
+    ```
+
+    - **OBS**: esse erro também poderá aparecer nas próximas rotas.
