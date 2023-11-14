@@ -87,3 +87,27 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     ```
 
     - **OBS**: esse erro também poderá aparecer nas próximas rotas.
+
+#### 2- Para obter a lista de usuários:
+
+- Método: **`GET`**;
+- Rota: **`/participants`**;
+
+* Será retornado a lista de todos os usuários ativos, exemplo:
+
+  ```javascript
+  [
+    {
+      _id: "65438bcf81ccb6b4c75167b1",
+      name: "Fulano",
+      lastStatus: 1698925519313
+    },
+    {
+      _id: "65438bd181ccb6b4c75167b3",
+      name: "Siclano",
+      lastStatus: 1698925521147
+    }
+  ]
+  ```
+
+- Status Code: **200**
