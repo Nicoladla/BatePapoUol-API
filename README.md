@@ -111,3 +111,22 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   ```
 
 - Status Code: **200**
+
+#### 3- Para enviar uma mensagem:
+
+- Método: **`POST`**;
+- Rota: **`/messages`**;
+
+* Você deverá enviar pelo **body** da requisição, os parâmetros **to**, **text** e **type**:
+
+  ```javascript
+  {
+    to: "Siclano",
+    text: "Oi sumido rsrsrs",
+    type: "private_message"
+  }
+  ```
+
+  - **Observações**:
+
+    - O **from** da mensagem, ou seja, o remetente, será enviado pelo `header` da requisição, chamado `User`;
