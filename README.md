@@ -130,3 +130,21 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   - **Observações**:
 
     - O **from** da mensagem, ou seja, o remetente, será enviado pelo `header` da requisição, chamado `User`;
+    * **from** deve ser um participante existente na lista de participantes;
+    * **type** só pode ser `message` ou `private_message`;
+    * O **to** da messagem, ou seja, para quem a mensagem é destinada, deve ter mais que 2 letras.
+    * **to** e **text** devem ser strings não vazias;
+
+- Status Code:
+
+  - Ocorre quando tudo dá certo:
+
+    ```
+    status: 201
+    ```
+
+  - Ocorre se algum dos campos for inválido:
+
+    ```
+    status: 422
+    ```
