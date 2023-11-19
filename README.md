@@ -148,3 +148,33 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     ```
     status: 422
     ```
+
+#### 4- Para obter a lista de mensagens:
+
+- Método: **`GET`**;
+- Rota: **`/messages`**;
+
+* Para obter a lista de mensagens, será necessário enviar um `header` chamado `User`, com o nome do usuário.
+
+* Será retornada uma lista com todas as mensagens públicas e as mensagens do usuário (recebidas e enviadas). Exemplo:
+
+  ```javascript
+  [
+    {
+      _id: "6370c6ec78d7a8d238ae21a3",
+      from: "Fulano",
+      to: "Todos",
+      text: "entra na sala...",
+      type: "status",
+      time: "7:29:0",
+    },
+    {
+      _id: "6370d6ddb0c655d20c36f41a",
+      from: "Fulano",
+      to: "Siclano",
+      text: "Oi sumido rsrsrs",
+      type: "private_message",
+      time: "8:37:1",
+    },
+  ];
+  ```
