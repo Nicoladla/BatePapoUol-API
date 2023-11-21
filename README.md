@@ -176,5 +176,15 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
       type: "private_message",
       time: "8:37:1",
     },
-  ];
+  ]
   ```
+  
+- Essa rota aceita um parâmetro via **query string**, onde você pode indicar quantas mensagens recentes deseja obter. O parâmetro se chama `limit` e nele é definido a quantidade.
+
+- Confira como fica a url com esse parâmetro:
+
+  ```
+  localhost:5000/messages?limit=100
+  ```
+
+- Status Code: **200**
