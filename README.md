@@ -188,3 +188,36 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   ```
 
 - Status Code: **200**
+
+#### 5- Para deletar uma messagem:
+
+- Método: **`DELETE`**;
+- Rota: **`/messages/ID_DA_MENSAGEM`**;
+
+* Para deletar uma mensagem, será necessário enviar um `header` chamado `User`, com o nome do usuário que deseja deletar a mensagem.
+
+* Você deverá enviar pelo parâmetro da rota o `id` da mensagem a ser deletada. Exemplo:
+
+  ```
+  /messages/6370d6ddb0c655d20c36f41a
+  ```
+
+- Status Code:
+
+  - Ocorre quando tudo dá certo:
+
+    ```
+    status: 200
+    ```
+
+  - Ocorre quando a mensagem a ser deletada não existe no banco de dados:
+
+    ```
+    status: 404
+    ```
+
+  - Ocorre quando o usuário não é o dono da mensagem:
+
+    ```
+    status: 401
+    ```
