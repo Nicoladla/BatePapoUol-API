@@ -221,3 +221,18 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     ```
     status: 401
     ```
+
+#### 6- Para editar uma messagem:
+
+- Método: **`PUT`**;
+- Rota: **`/messages/ID_DA_MENSAGEM`**;
+
+* Você deverá enviar pelo **body** da requisição, os parâmetros **to**, **text** e **type**:
+
+  ```javascript
+  {
+    to: "Siclano",
+    text: "Iae meu brother!",
+    type: "private_message"
+  }
+  ```
