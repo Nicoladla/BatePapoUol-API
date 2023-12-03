@@ -245,3 +245,35 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     * **type** só pode ser `message` ou `private_message`;
     * O **to** da messagem, ou seja, para quem a mensagem é destinada, deve ter mais que 2 letras.
     * **to** e **text** devem ser strings não vazias;
+
+* Você deverá enviar pelo parâmetro da rota o `id` da mensagem a ser editada. Exemplo:
+
+  ```
+  /messages/6370d6ddb0c655d20c36f41a
+  ```
+
+- Status Code:
+
+  - Ocorre quando tudo dá certo:
+
+    ```
+    status: 200
+    ```
+
+  - Ocorre se algum dos campos for inválido:
+
+    ```
+    status: 422
+    ```
+
+    - Ocorre quando a mensagem a ser editada não existe no banco de dados:
+
+    ```
+    status: 404
+    ```
+
+  - Ocorre quando o usuário não é o dono da mensagem:
+
+    ```
+    status: 401
+    ```
