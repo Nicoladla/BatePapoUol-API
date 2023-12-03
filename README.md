@@ -277,3 +277,14 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     ```
     status: 401
     ```
+
+    #### 7- Para manter o usuário conectado ao servidor:
+
+- Método: **`POST`**;
+- Rota: **`/status`**;
+
+* **Observações**:
+
+  - O `lastStatus` é usado para identificar a atividade do usuário no servidor.
+
+  - A cada 15 segundos, o servidor verifica quais usuários estão com o `lastStatus` desatualizados em 10 segundos, ou seja, estão inativos a mais de 10 segundos. Caso isso aconteça, esses usuários serão removidos do servidor automaticamente.
