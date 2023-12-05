@@ -288,3 +288,21 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   - O `lastStatus` é usado para identificar a atividade do usuário no servidor.
 
   - A cada 15 segundos, o servidor verifica quais usuários estão com o `lastStatus` desatualizados em 10 segundos, ou seja, estão inativos a mais de 10 segundos. Caso isso aconteça, esses usuários serão removidos do servidor automaticamente.
+
+* Para atualizar o status de um usuário, e evitar dele ser desconectado do servidor, será necessário enviar um `header` chamado `User`, com o nome do usuário a ter o status atualizado.
+
+- Status Code:
+
+  - Ocorre quando tudo dá certo:
+
+    ```
+    status: 200
+    ```
+
+  - Ocorre quando o usuário não existe na lista de usuários:
+
+    ```
+    status: 404
+    ```
+
+---
