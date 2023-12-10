@@ -331,3 +331,19 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   - Dotenv;
   - Joi;
   - MongoDB.
+  
+### Como iniciar o projeto na minha máquina?
+
+- O primeiro passo é você fazer o download do projeto para sua máquina: [Download ZIP](https://github.com/Nicoladla/BatePapoUol-API/archive/refs/heads/main.zip)
+
+- Ou então clonar esse repositório através do seu terminal:
+
+  ```
+  git clone https://github.com/Nicoladla/BatePapoUol-API.git
+  ```
+
+- Com o projeto na sua máquina, abra o seu editor de código favorito e então, dentro do seu projeto no seu terminal, execute o comando:
+
+  ```
+  npm install
+  ```
