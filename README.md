@@ -316,3 +316,18 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 - Para fazer a instalação do MongoDB, você pode seguir algum tutorial pela internet, ou se preferir, você pode ir direto no [site oficial](https://www.mongodb.com/) do MongoDb.
 
 - A versão do MongoDB usada nesse projeto foi a `v5.0.18`.
+
+### Tecnologias utilizadas:
+
+- **Desenvolvimento**:
+
+  - Nodemon.
+
+- **Produção**:
+  - Node (v16.17.0);
+  - Express;
+  - Cors;
+  - Dayjs;
+  - Dotenv;
+  - Joi;
+  - MongoDB.
