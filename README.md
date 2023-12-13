@@ -347,3 +347,11 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   ```
   npm install
   ```
+
+- Com o MongoDB instalado em sua máquina, abra o seu terminal e inicie o servidor do Mongo com o seguinte comando:
+
+  ```
+  mongod --dbpath ~/.mongo
+  ```
+
+  - Enquanto o terminal estiver aberto, o servidor do Mongo estará ativo. Só assim a aplicação será capaz de persistir e acessar os dados corretamente.
