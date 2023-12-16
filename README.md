@@ -355,3 +355,11 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   ```
 
   - Enquanto o terminal estiver aberto, o servidor do Mongo estará ativo. Só assim a aplicação será capaz de persistir e acessar os dados corretamente.
+
+- Também será necessário criar um arquivo `.env`, onde você colocará as variáveis de ambiente. Você deve usar como base as variáveis que estão no arquivo `.env.example`.
+
+- Para usar o banco de dados da sua máquina você irá colocar o seguinte valor na variável **MONGO_URL**:
+
+  ```
+  mongodb://localhost:27017
+  ```
