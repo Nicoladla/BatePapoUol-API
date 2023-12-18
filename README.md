@@ -363,3 +363,24 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   ```
   mongodb://localhost:27017
   ```
+
+- O próximo passo é você colocar o valor da porta, onde a sua máquina disponibilizará a aplicação, na variável **PORT_EXPRESS**:
+
+  ```
+  5000
+  ```
+
+  - **OBS**: Você pode usar qualquer porta que desejar, mas para esse guia use a porta indicada.
+
+- Agora seu arquivo `.env` estará nesse formato:
+
+  ```
+  MONGO_URL= mongodb://localhost:27017
+  PORT_EXPRESS = 5000
+  ```
+
+- Por fim, basta inicializar a aplicação:
+
+  ```
+  npm start
+  ```
