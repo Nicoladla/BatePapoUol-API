@@ -20,7 +20,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
 ## Confira como usar os recursos da API:
 
-**1- Cadastrar um usuário:**
+#### 1- Cadastrar um usuário:
 
 - Método: **`POST`**;
 - Rota: **`/participants`**;
@@ -29,7 +29,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
   ```javascript
   {
-    name: "Fulano"
+    name: "Fulano";
   }
   ```
 
@@ -43,23 +43,23 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
   - **OBS**: o uso do `lastStatus` será explicado mais a frente.
   - **OBS**: O usuário cadastrado só existirá enquanto ele permanecer conectado ao servidor.
-  
+
 - Sempre que um novo usuário for cadastrado, será salvo automaticamente uma mensagem de status:
 
   ```javascript
-    {
-      from: 'xxx', to: 'Todos', text: 'entra na sala...', type: 'status', time: 'HH:MM:SS'
-    }
+  {
+    from: 'xxx', to: 'Todos', text: 'entra na sala...', type: 'status', time: 'HH:MM:SS'
+  }
   ```
 
 - Assim como, usuários que forem desconectados do servidor. Também será salvo uma mensagem automaticamente:
 
   ```javascript
-    {
-      from: 'xxx', to: 'Todos', text: 'sai da sala...', type: 'status', time: 'HH:MM:SS'
-    }
+  {
+    from: 'xxx', to: 'Todos', text: 'sai da sala...', type: 'status', time: 'HH:MM:SS'
+  }
   ```
-  
+
 - Status Code:
 
   - Ocorre quando tudo dá certo:
@@ -100,14 +100,14 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
     {
       _id: "65438bcf81ccb6b4c75167b1",
       name: "Fulano",
-      lastStatus: 1698925519313
+      lastStatus: 1698925519313,
     },
     {
       _id: "65438bd181ccb6b4c75167b3",
       name: "Siclano",
-      lastStatus: 1698925521147
-    }
-  ]
+      lastStatus: 1698925521147,
+    },
+  ];
   ```
 
 - Status Code: **200**
@@ -130,6 +130,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   - **Observações**:
 
     - O **from** da mensagem, ou seja, o remetente, será enviado pelo `header` da requisição, chamado `User`;
+
     * **from** deve ser um participante existente na lista de participantes;
     * **type** só pode ser `message` ou `private_message`;
     * O **to** da messagem, ou seja, para quem a mensagem é destinada, deve ter mais que 2 letras.
@@ -176,9 +177,9 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
       type: "private_message",
       time: "8:37:1",
     },
-  ]
+  ];
   ```
-  
+
 - Essa rota aceita um parâmetro via **query string**, onde você pode indicar quantas mensagens recentes deseja obter. O parâmetro se chama `limit` e nele é definido a quantidade.
 
 - Confira como fica a url com esse parâmetro:
@@ -331,7 +332,7 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
   - Dotenv;
   - Joi;
   - MongoDB.
-  
+
 ### Como iniciar o projeto na minha máquina?
 
 - O primeiro passo é você fazer o download do projeto para sua máquina: [Download ZIP](https://github.com/Nicoladla/BatePapoUol-API/archive/refs/heads/main.zip)
@@ -383,4 +384,12 @@ Confira também o frontend dessa aplicação: [https://github.com/Nicoladla/Bate
 
   ```
   npm start
+  ```
+
+- Assim, ao executar esse comando, aparecerá no terminal o status da aplicação.
+
+- Agora você poderá fazer requisições para a API, usando como base, a url:
+
+  ```
+  localhost:5000/
   ```
